@@ -1,0 +1,31 @@
+<template>
+    <div class="volume-details-wrapper">
+
+        <lightning-card title={getCardTitle}>
+            <h3 slot="title">
+                <lightning-icon icon-name="standard:volume_discounts" size="small"></lightning-icon>
+                Volume details:{accDetails.name}
+            </h3>
+
+
+            <p class="slds-p-horizontal_small">
+                Daily average over the last: <b>{daysAgo}</b> days.<br />
+                AVG:<b>{accDetails.volumeCurrency}</b>
+
+                <lightning-input type="number" label="Select days ago" placeholder="Enter days" onchange={updateDays}
+                    value={daysAgo}></lightning-input>
+            </p>
+            <div slot="footer">
+                VOLUME AVERAGE 💹 <br />
+                Average last year: <b if:true={accData.avgVolume}>{accData.avgVolume}</b>
+            </div>
+        </lightning-card>
+
+
+
+        <div if:true={isLoading} class="spinner-container">
+
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </div>
+</template>
